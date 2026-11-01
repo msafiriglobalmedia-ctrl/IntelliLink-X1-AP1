@@ -1,0 +1,27 @@
+INTELLILINK X1 - RENDER ASSETS DIRECTORY FIX
+
+This archive is arranged with the project contents at the ZIP ROOT.
+After extracting, upload/commit ALL files and folders inside this directory
+into the ROOT of your GitHub repository (not just main.py).
+
+Required paths:
+  main.py
+  index.html
+  manifest.webmanifest
+  service-worker.js
+  requirements.txt
+  assets/app.js
+  assets/styles.css
+  assets/icons/icon-192.png
+  assets/icons/icon-512.png
+
+On Render:
+  Root Directory: leave blank IF these files are at the repository root.
+  Build Command: pip install -r requirements.txt
+  Start Command: uvicorn main:app --host 0.0.0.0 --port $PORT
+  Health Check Path: /api/v1/health
+
+IMPORTANT:
+  The folder name is case-sensitive on Render/Linux. It must be exactly
+  "assets" in lowercase, alongside main.py. Do not upload only the ZIP file.
+  After pushing the files to GitHub, trigger a new deployment on Render.
