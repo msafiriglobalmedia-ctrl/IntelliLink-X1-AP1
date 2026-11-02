@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#071225">
+  <meta name="description" content="IntelliLink X1 adaptive network intelligence, live speed monitoring and device diagnostics.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <title>IntelliLink X1 — Network Intelligence</title>
+</head>
+<body>
+  <div id="splash-screen" class="splash-screen" aria-label="Loading IntelliLink X1">
+    <div class="splash-orbit orbit-one"></div><div class="splash-orbit orbit-two"></div>
+    <div class="splash-core"><img src="/assets/icons/icon-512.png" alt="IntelliLink X1 logo"></div>
+    <div class="splash-brand">INTELLILINK <span>X1</span></div>
+    <div class="splash-tagline">NETWORK INTELLIGENCE</div>
+    <div class="splash-progress"><span></span></div>
+    <div class="splash-status">INITIALIZING NETWORK CORE</div>
+  </div>
+
+  <div class="app-shell" id="app-shell" aria-hidden="true">
+    <header class="topbar">
+      <a class="brand" href="#overview" aria-label="IntelliLink X1 home">
+        <img src="/assets/icons/icon-192.png" alt="" class="brand-icon">
+        <span><span class="brand-name">IntelliLink <b>X1</b></span><span class="brand-subtitle">NETWORK INTELLIGENCE</span></span>
+      </a>
+      <div class="top-actions">
+        <button id="install-button" class="install-button" type="button" hidden>＋ Install</button>
+        <div class="live-pill"><span class="live-dot"></span><span id="connection-state">INITIALIZING</span></div>
+      </div>
+    </header>
+
+    <main>
+      <section id="overview" class="welcome-row">
+        <div><p class="eyebrow">ADAPTIVE NETWORK MONITOR</p><h1>Connection overview</h1><p class="muted">Your live connection, performance and device network status.</p></div>
+        <div class="build-stamp">X1 CORE <span>1.1</span></div>
+      </section>
+
+      <section class="live-speed-card panel" aria-live="polite">
+        <div class="live-speed-top">
+          <div><p class="eyebrow">LIVE NETWORK SPEED</p><div class="live-speed-number"><span id="live-speed-value">--</span><small>Mbps</small></div><div class="live-speed-meta" id="speed-source">Preparing first automatic sample…</div></div>
+          <div class="speed-pulse-wrap"><div class="speed-pulse"></div><span id="monitor-state">AUTO MONITOR ON</span></div>
+        </div>
+        <svg class="speed-chart" viewBox="0 0 340 62" role="img" aria-label="Recent download speed history"><defs><linearGradient id="speedFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#30d8ff" stop-opacity=".35"/><stop offset="1" stop-color="#30d8ff" stop-opacity="0"/></linearGradient></defs><path id="speed-area" d="M0 56 L340 56 Z" fill="url(#speedFill)"/><polyline id="speed-line" points="0,56 340,56" fill="none" stroke="#30d8ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="speed-footer"><span id="speed-updated">Waiting for measurement</span><button id="monitor-toggle" class="text-button" type="button">Pause monitor</button></div>
+      </section>
+
+      <section class="score-card panel">
+        <div class="score-copy"><p class="eyebrow">NETWORK QUALITY INDEX</p><div class="score-line"><span id="score-value">--</span><span class="score-outof">/100</span></div><div class="grade" id="score-grade">Not tested yet</div><p class="score-note" id="score-advice">Run a full diagnostic to generate your first report.</p></div>
+        <div class="score-ring" id="score-ring" aria-label="Network score gauge"><div class="ring-inner"><span class="ring-symbol">X1</span><span class="ring-caption">QUALITY</span></div></div>
+      </section>
+
+      <section class="section-heading"><div><p class="eyebrow">LIVE TELEMETRY</p><h2>Connection metrics</h2></div><span class="small-tag" id="network-label">NETWORK: CHECKING</span></section>
+      <section class="metrics-grid">
+        <article class="metric-card panel"><div class="metric-top"><span class="metric-icon">◷</span><span class="metric-label">LATENCY</span></div><div class="metric-value" id="latency-value">--<small> ms</small></div><p class="metric-foot">HTTP response time</p></article>
+        <article class="metric-card panel"><div class="metric-top"><span class="metric-icon">≈</span><span class="metric-label">JITTER</span></div><div class="metric-value" id="jitter-value">--<small> ms</small></div><p class="metric-foot">Request variation</p></article>
+        <article class="metric-card panel"><div class="metric-top"><span class="metric-icon">⇩</span><span class="metric-label">DOWNLOAD</span></div><div class="metric-value" id="download-value">--<small> Mbps</small></div><p class="metric-foot">Full diagnostic test</p></article>
+        <article class="metric-card panel"><div class="metric-top"><span class="metric-icon">⌁</span><span class="metric-label">FAILED REQUESTS</span></div><div class="metric-value" id="failure-value">--<small> %</small></div><p class="metric-foot">Test request failures</p></article>
+      </section>
+
+      <section id="diagnostics" class="action-panel panel">
+        <div class="section-heading compact"><div><p class="eyebrow">NETWORK LAB</p><h2>Full connection diagnostics</h2></div><span class="small-tag">MANUAL TEST</span></div>
+        <p class="muted">Run a complete test for response time, jitter, download throughput and a network quality score.</p>
+        <button id="run-test" class="primary-button" type="button"><span>↗</span> Run full network check</button>
+        <p class="test-status" id="test-status" role="status">Automatic speed monitoring is active.</p>
+        <div class="detail-row"><span>Last full diagnostic</span><strong id="last-test">Not available</strong></div>
+      </section>
+
+      <section id="device" class="device-grid">
+        <article class="details-card panel">
+          <div class="section-heading compact"><div><p class="eyebrow">DEVICE CONNECTIVITY</p><h2>Current network</h2></div><span class="status-chip" id="online-chip">Checking…</span></div>
+          <div class="detail-row"><span>Connection interface</span><strong id="connection-kind">Detecting…</strong></div>
+          <div class="detail-row"><span>Effective network class</span><strong id="connection-type">Not exposed</strong></div>
+          <div class="detail-row"><span>Browser downlink estimate</span><strong id="browser-downlink">Not exposed</strong></div>
+          <div class="detail-row"><span>Browser RTT estimate</span><strong id="browser-rtt">Not exposed</strong></div>
+          <div class="detail-row"><span>Data saver</span><strong id="data-saver">Unknown</strong></div>
+          <div class="detail-row"><span>Last network change</span><strong id="network-changed">App opened</strong></div>
+        </article>
+
+        <article class="details-card panel sim-card">
+          <div class="section-heading compact"><div><p class="eyebrow">CELLULAR MODULE</p><h2>SIM & mobile network</h2></div><span class="status-chip neutral-chip" id="sim-access-chip">LIMITED ACCESS</span></div>
+          <div class="sim-visual"><div class="sim-chip-icon"><span>SIM</span><i></i><i></i><i></i></div><div><strong id="sim-network-state">Cellular status unavailable</strong><p id="sim-network-hint">Waiting for browser network information.</p></div></div>
+          <div class="detail-row"><span>Mobile network detected</span><strong id="cellular-detected">Not exposed</strong></div>
+          <div class="detail-row"><span>Carrier / operator</span><strong class="privacy-value">Restricted by browser</strong></div>
+          <div class="detail-row"><span>SIM slot / phone number</span><strong class="privacy-value">Not accessible</strong></div>
+          <div class="detail-row"><span>SIM identifiers</span><strong class="privacy-value">Protected</strong></div>
+          <p class="sim-note">For SIM details, open your phone Settings → SIM cards & mobile networks. A browser-based app cannot read SIM identifiers or manage the SIM.</p>
+        </article>
+      </section>
+
+      <section class="system-card panel">
+        <div><p class="eyebrow">X1 DEVICE PROFILE</p><h2>Browser environment</h2></div>
+        <div class="detail-row"><span>Platform</span><strong id="device-platform">Detecting…</strong></div>
+        <div class="detail-row"><span>Connection API support</span><strong id="connection-api">Checking…</strong></div>
+        <div class="detail-row"><span>App mode</span><strong id="app-mode">Browser</strong></div>
+      </section>
+
+      <section class="notice-card"><span class="notice-icon">ⓘ</span><p><strong>Measurement and privacy:</strong> Automatic monitoring uses a small 128 KiB download sample about once per minute while this app is visible. Results are estimates between this phone and the IntelliLink server, not a certified carrier speed test. Browser access to SIM identifiers, radio signal dBm, tower ID and full radio diagnostics is restricted.</p></section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Main navigation">
+      <a href="#overview"><span>⌂</span>Overview</a><a href="#diagnostics"><span>⌁</span>Diagnostics</a><a href="#device"><span>▣</span>Device</a>
+    </nav>
+    <footer><span>INTELLILINK X1</span><span>CORE 1.1 · PWA</span></footer>
+  </div>
+  <script src="/assets/app.js" defer></script>
+</body>
+</html>
